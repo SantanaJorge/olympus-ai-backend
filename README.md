@@ -135,6 +135,15 @@ Os arquivos relacionados à autenticação estão organizados no diretório `aut
 - `auth/manage_keys.py` - Script Python para gerenciamento de chaves
 - [📄 Ver documentação da camada Auth](auth/README.md)
 
+## Agentes Disponíveis
+
+| Agente | Modelo | Uso Recomendado |
+|---|---|---|
+| `athena` | GPT-5.4 | Análises complexas, diagnósticos detalhados, planejamento estratégico |
+| `saori` | GPT-5-mini | Tarefas simples, respostas rápidas, uso cotidiano |
+
+Especifique o agente desejado no campo `model` da requisição. Se omitido, o servidor usa o agente padrão.
+
 ## Arquitetura do Sistema
 
 O projeto segue uma arquitetura em camadas bem definida para separar responsabilidades, facilitar a manutenção e garantir a escalabilidade.
