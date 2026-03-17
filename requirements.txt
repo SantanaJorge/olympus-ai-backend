@@ -1,0 +1,35 @@
+# Usar Python 3.11
+
+# ---- Nucleo LangChain (usado no projeto hoje) ----
+langchain-core
+langchain-classic
+langchain-openai
+
+# ---- Integracoes opcionais para outros modelos (via LangChain) ----
+langchain-ollama
+langchain-google-genai
+langchain-xai
+
+# ---- RAG (obrigatorio para backend atual com Weaviate) ----
+langchain-weaviate
+langchain-text-splitters
+
+# ---- Dependencias de runtime ----
+weaviate-client
+tiktoken
+
+# ---- Ferramentas de dados usadas ----
+pandas
+toons
+
+# ---- Interfaces / APIs ----
+flask
+flask-cors
+
+# ---- Configuração local ----
+python-dotenv
+
+# ---- Testes ----
+pytest
+pytest-cov
+pytest-mock
