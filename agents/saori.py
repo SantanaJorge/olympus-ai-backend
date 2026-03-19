@@ -6,6 +6,6 @@ class SaoriAgent(Agent):
     """Agente declarativo dedicado ao planner Saori — respostas rápidas e uso cotidiano."""
 
     model = SaoriModel
-    model_aliases = ["saori"]
-    owned_by = "zeus"
+    #model_aliases = ["Saori"]
+    owned_by = "Zeus"
     hidden = False

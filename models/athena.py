@@ -9,7 +9,7 @@ from .diagnostic_full import DiagnosticFullModel
 
 
 class AthenaModel(Model):
-    name = "athena"
+    name = "Athena"
 
     description = (
         "Athena — planner estratégico completo da Olympus AI. "
@@ -26,6 +26,10 @@ class AthenaModel(Model):
     )
 
     agents = [DiagnosticFullModel]
+
+    thought_labels = {
+        "diagnosis": "Analisando saúde do parque de dispositivos...",
+    }
 
     prompt = ChatPromptTemplate.from_messages(
         [

@@ -14,4 +14,4 @@ import agents  # Importar dispara auto-discovery e registro declarativo de agent
 if __name__ == '__main__':
     # Obter servidor singleton e iniciar
     server = Server.get_instance()
-    server.start(host='0.0.0.0', port=6000, debug=True)
+    server.start(host='0.0.0.0', port=6001, debug=True)

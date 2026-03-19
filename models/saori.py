@@ -9,7 +9,7 @@ from .diagnostic_lite import DiagnosticLiteModel
 
 
 class SaoriModel(Model):
-    name = "saori"
+    name = "Saori"
 
     description = (
         "Saori — planner ágil e econômico da Olympus AI. "

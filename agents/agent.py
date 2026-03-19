@@ -43,6 +43,13 @@ class Agent(ABC):
             return ""
         return str(intermediate_steps)
 
+    def _action_to_human_label(self, action) -> str:
+        tool_name = getattr(action, "tool", None) or ""
+        thought_labels = getattr(self.model, "thought_labels", {}) or {}
+        if tool_name in thought_labels:
+            return thought_labels[tool_name]
+        return f"Consultando {tool_name}..." if tool_name else ""
+
     @classmethod
     def _to_langchain_history(cls, messages: List[Dict[str, Any]]):
         previous_messages = messages[:-1] if messages and messages[-1].get("role") == "user" else messages
@@ -223,9 +230,14 @@ class Agent(ABC):
                     if "output" in chunk and chunk["output"]:
                         yield {"content": str(chunk["output"])}
 
-                    if "intermediate_steps" in chunk:
-                        thought = self._format_intermediate_steps(chunk.get("intermediate_steps"))
-                        yield {"thought": thought}
+                    if "actions" in chunk:
+                        for action in chunk["actions"]:
+                            label = self._action_to_human_label(action)
+                            if label:
+                                yield {"thought": label}
+
+                    # "intermediate_steps" no streaming já foi coberto por "actions"
+                    # (labels amigáveis). Ignorar para não emitir texto técnico bruto.
                 else:
                     yield str(chunk)
             return

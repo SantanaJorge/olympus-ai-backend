@@ -38,7 +38,7 @@ if [ -z "$MODE" ]; then
 fi
 
 # Clean state before starting
-echo "Ensuring port 6000 is free..."
+echo "Ensuring port 6001 is free..."
 ./stop.sh >/dev/null 2>&1
 
 start_local() {
@@ -50,8 +50,8 @@ start_local() {
     source .venv/bin/activate
     
     # Check if port is busy
-    if lsof -i:6000 -t >/dev/null ; then
-        echo "Warning: Port 6000 is locally busy. Trying to start anyway (might fail)..."
+    if lsof -i:6001 -t >/dev/null ; then
+        echo "Warning: Port 6001 is locally busy. Trying to start anyway (might fail)..."
         # Optional: ./stop.sh --local
     fi
 

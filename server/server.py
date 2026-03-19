@@ -178,11 +178,11 @@ class Server:
     @staticmethod
     def _parse_thought_stream_mode(raw_value: Any) -> "Server.ThoughtStreamMode":
         if raw_value is None:
-            return Server.ThoughtStreamMode.CUSTOM
+            return Server.ThoughtStreamMode.CONTENT
 
         raw_text = str(raw_value).strip().lower()
         if raw_text == "":
-            return Server.ThoughtStreamMode.CUSTOM
+            return Server.ThoughtStreamMode.CONTENT
 
         try:
             return Server.ThoughtStreamMode(raw_text)
@@ -372,9 +372,9 @@ class Server:
                                         stream_thought_parts.append(thought_piece)
 
                                     if thought_stream_mode == Server.ThoughtStreamMode.CUSTOM:
-                                        yield send_chunk(None, None, delta={"thought": thought_piece})
+                                        yield send_chunk(None, None, delta={"reasoning": thought_piece})
                                     elif thought_stream_mode == Server.ThoughtStreamMode.CONTENT and thought_piece:
-                                        yield send_chunk(f"\n[Pensamento]\n{thought_piece}\n", None)
+                                        yield send_chunk(f"<think>{thought_piece}</think>", None)
 
                                 continue
 

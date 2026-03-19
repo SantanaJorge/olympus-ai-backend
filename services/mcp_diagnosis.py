@@ -10,7 +10,7 @@ import pandas as pd
 from tools.toon import encode_toon
 
 _DEFAULT_BASE_URL = (
-    "https://mcp-diagnosis-server-ukneqvhpoa-uc.a.run.app/mcp/tools"
+    "https://mcp-diagnosis-server-ukneqvhpoa-uc.a.run.app"
 )
 _DEFAULT_AUTH_TOKEN = "sk_gP0eOKRyx1hscEzKRQ8D3vf7Bf249ooSbs18DqL2lTw"
 _DEFAULT_TIMEOUT_SECONDS = 300
@@ -131,7 +131,7 @@ class MCPDiagnosisService:
 
         body = json.dumps(cleaned_payload).encode("utf-8")
         req = request.Request(
-            url=f"{self.base_url}/{tool_name}",
+            url=f"{self.base_url}/mcp/tools/{tool_name}",
             data=body,
             headers=self._build_headers(),
             method="POST",
