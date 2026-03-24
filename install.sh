@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# Verifica se um comando existe, aborta se não
+require_cmd() {
+    local cmd=$1 msg=$2
+    if ! command -v "$cmd" >/dev/null 2>&1; then
+        echo "Error: '$cmd' not found. $msg"
+        exit 1
+    fi
+}
+
 show_help() {
     echo "Usage: ./install.sh [OPTIONS]"
     echo "Options:"
@@ -41,6 +50,12 @@ if [ "$FORCE" = "true" ]; then
 fi
 
 if [ "$MODE" = "local" ]; then
+    require_cmd python3 "Install Python 3: sudo apt install python3 (Ubuntu) | brew install python3 (Mac)"
+    if ! python3 -m pip --version >/dev/null 2>&1; then
+        echo "Error: pip not found for python3. Install: sudo apt install python3-pip (Ubuntu)"
+        exit 1
+    fi
+
     if [ -d ".venv" ]; then
         echo "Local environment (.venv) already exists. Checking dependencies..."
         source .venv/bin/activate
@@ -58,16 +73,8 @@ if [ "$MODE" = "local" ]; then
     echo "Local setup ready."
 else
     # Docker mode
-    # Check if image exists (heuristic: check if build is needed? 
-    # Docker compose 'up' usually handles this, but 'install' means 'build' here)
-    
-    # We will check if the service image is built.
-    # Since compose names images predictably or we can just let compose check.
-    # User asked: "see if installed or not before installing".
-    
-    # docker compose build is "installing".
-    # Check if image exists.
-    
+    require_cmd docker "Install Docker: https://docs.docker.com/get-docker/"
+
     if docker compose version >/dev/null 2>&1; then
         CMD="docker compose"
     else
