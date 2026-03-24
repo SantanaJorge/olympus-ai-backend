@@ -8,7 +8,10 @@ import os
 
 from dotenv import load_dotenv
 
+from tools.env_bootstrap import strip_secret_env_vars
+
 load_dotenv()
+strip_secret_env_vars()
 
 from server.server import Server
 

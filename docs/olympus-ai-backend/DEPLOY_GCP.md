@@ -102,9 +102,11 @@ O repositório inclui [`cloudbuild.yaml`](../../cloudbuild.yaml): build Docker, 
 
 2. Criar os secrets listados na seção 3 (nomes sugeridos iguais às variáveis de ambiente).
 
-3. Conceder à service account **de runtime** do Cloud Run `roles/secretmanager.secretAccessor` no projeto (ou por secret).
+3. Se a OpenAI (ou outro provedor) responder **401 / invalid API key** mesmo com valor certo no console do Secret Manager, verifique **newline ou espaço no fim** do secret ao colar (`printf` sem `\n` no final). O app normaliza `OPENAI_API_KEY` e outros com **`.strip()`** em [`tools/env_bootstrap.py`](../../tools/env_bootstrap.py); faça **novo deploy** após mudanças no código.
 
-4. O deploy mapeia com `--set-secrets=ENV_VAR=SECRET_NAME:latest` (ver [`cloudbuild.yaml`](../../cloudbuild.yaml)).
+4. Conceder à service account **de runtime** do Cloud Run `roles/secretmanager.secretAccessor` no projeto (ou por secret).
+
+5. O deploy mapeia com `--set-secrets=ENV_VAR=SECRET_NAME:latest` (ver [`cloudbuild.yaml`](../../cloudbuild.yaml)).
 
 ---
 

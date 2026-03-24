@@ -1,0 +1,14 @@
+# Avoid baking local secrets into images; Cloud Run injects via Secret Manager.
+.env
+.env.*
+!.env.example
+
+.git
+.gitignore
+.venv
+.venv-ci
+venv
+__pycache__
+*.pyc
+.pytest_cache
+.cursor
