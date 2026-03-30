@@ -137,19 +137,23 @@ class PassthroughProxy:
     """
 
     def __init__(self, llm_cls: Type[BaseLLM]) -> None:
+        import os
+        from llm.adapters import build_adapter
+
         self._llm_cls = llm_cls
         self.name = llm_cls.model_name
-        self.hidden = True          # nunca aparece em GET /v1/models
+        self.hidden = True
         self.model_aliases: List[str] = []
         self.owned_by: str = "zeus"
         self.created: int = int(time.time())
+        self.model = self  # self-ref para Server._resolve_model_token_counter
 
-        # self-ref para Server._resolve_model_token_counter
-        # que espera agent.model._count_tokens
-        self.model = self
-
-        from openai import OpenAI
-        self._client = OpenAI(api_key=os.getenv(llm_cls.env_key))
+        api_key = os.getenv(llm_cls.env_key) or ""
+        self._adapter = build_adapter(
+            model_name=llm_cls.model_name,
+            provider=llm_cls.provider,
+            api_key=api_key,
+        )
 
     # ------------------------------------------------------------------
     # Extração de parâmetros de geração
@@ -176,12 +180,7 @@ class PassthroughProxy:
         request_data: Optional[Dict[str, Any]] = None,
     ) -> str:
         params = self._extract_params(request_data)
-        response = self._client.chat.completions.create(
-            model=self.name,
-            messages=messages,
-            **params,
-        )
-        return response.choices[0].message.content or ""
+        return self._adapter.chat(messages, **params)
 
     # ------------------------------------------------------------------
     # Chat (streaming)
@@ -194,16 +193,7 @@ class PassthroughProxy:
         request_data: Optional[Dict[str, Any]] = None,
     ) -> Iterator[str]:
         params = self._extract_params(request_data)
-        stream = self._client.chat.completions.create(
-            model=self.name,
-            messages=messages,
-            stream=True,
-            **params,
-        )
-        for chunk in stream:
-            delta = chunk.choices[0].delta if chunk.choices else None
-            if delta and delta.content:
-                yield delta.content
+        yield from self._adapter.chat_stream(messages, **params)
 
     # ------------------------------------------------------------------
     # Contagem de tokens (tiktoken)
