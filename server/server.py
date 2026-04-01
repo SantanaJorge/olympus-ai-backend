@@ -569,7 +569,7 @@ class Server:
         print("   - POST /chat/completions    - OpenAI-compatible chat completions")
         print("   - POST /v1/chat/completions - OpenAI-compatible chat completions")
         print("   - GET  /health              - Health check")
-        print("   - GET  /passthrough        - List passthrough models")
+        print("   - GET  /passthrough         - List passthrough models")
 
         agents = {k: v for k, v in self.chat_model_registry.items() if not v.get("passthrough")}
         passthroughs = {k: v for k, v in self.chat_model_registry.items() if v.get("passthrough")}
