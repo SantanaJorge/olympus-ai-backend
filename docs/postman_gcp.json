@@ -1,7 +1,7 @@
 {
   "info": {
-    "_postman_id": "35273bb0-3142-4309-8a6f-786549a2a242",
-    "name": "Olympus AI (Local)",
+    "_postman_id": "f2cdc6a6-3de9-4898-a1dc-5bee92aa0c78",
+    "name": "Olympus AI (GCP)",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "4317926"
   },
@@ -27,11 +27,14 @@
           }
         },
         "url": {
-          "raw": "localhost:6001/v1/chat/completions",
+          "raw": "https://olympus-ai-backend-274033151748.us-central1.run.app/v1/chat/completions",
+          "protocol": "https",
           "host": [
-            "localhost"
+            "olympus-ai-backend-274033151748",
+            "us-central1",
+            "run",
+            "app"
           ],
-          "port": "6001",
           "path": [
             "v1",
             "chat",
@@ -62,11 +65,14 @@
           }
         },
         "url": {
-          "raw": "localhost:6001/v1/chat/completions",
+          "raw": "https://olympus-ai-backend-274033151748.us-central1.run.app/v1/chat/completions",
+          "protocol": "https",
           "host": [
-            "localhost"
+            "olympus-ai-backend-274033151748",
+            "us-central1",
+            "run",
+            "app"
           ],
-          "port": "6001",
           "path": [
             "v1",
             "chat",
@@ -82,11 +88,14 @@
         "method": "GET",
         "header": [],
         "url": {
-          "raw": "localhost:6001/passthrough",
+          "raw": "https://olympus-ai-backend-274033151748.us-central1.run.app/passthrough",
+          "protocol": "https",
           "host": [
-            "localhost"
+            "olympus-ai-backend-274033151748",
+            "us-central1",
+            "run",
+            "app"
           ],
-          "port": "6001",
           "path": [
             "passthrough"
           ]
@@ -107,11 +116,14 @@
           }
         ],
         "url": {
-          "raw": "localhost:6001/models",
+          "raw": "https://olympus-ai-backend-274033151748.us-central1.run.app/models",
+          "protocol": "https",
           "host": [
-            "localhost"
+            "olympus-ai-backend-274033151748",
+            "us-central1",
+            "run",
+            "app"
           ],
-          "port": "6001",
           "path": [
             "models"
           ]
