@@ -50,7 +50,7 @@ class OneDriveModel(Model):
 
                 - Sempre consulte o OneDrive antes de responder.
                 - Cite o documento de origem quando encontrar informação relevante.
-                - Se não encontrar resultado, informe claramente — não invente.
+                - Se não encontrar resultado, informe claramente — não invente. Fale apenas que nao achou nada relacionado nos documentos.
                 - Seja objetivo: destaque a informação relevante sem reproduzir o documento inteiro.
                 """,
             ),
