@@ -90,10 +90,17 @@ class RagieRAG(RAG):
 
         docs = []
         for chunk in response.scored_chunks:
+            chunk_metadata = getattr(chunk, "metadata", None) or {}
+            start_page = chunk_metadata.get("start_page")
+            end_page = chunk_metadata.get("end_page")
             metadata = {
                 "document_id": chunk.document_id,
+                "document_name": getattr(chunk, "document_name", None),
                 "score": chunk.score,
+                "start_page": start_page,
+                "end_page": end_page,
                 **(chunk.document_metadata or {}),
+                **chunk_metadata,
             }
             docs.append(Document(page_content=chunk.text, metadata=metadata))
 

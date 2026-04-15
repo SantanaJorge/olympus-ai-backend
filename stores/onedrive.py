@@ -9,5 +9,5 @@ class OneDrive(RagieRAG):
         Apenas busca é permitida.
     """
 
-    partition = "zeus"
+    partition = "zeus-library"
     type_access = TypeAccess.READ
