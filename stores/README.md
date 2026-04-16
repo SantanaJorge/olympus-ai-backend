@@ -131,10 +131,12 @@ tools = [*Research().as_tool()]  # desempacota as 2 tools
 | Atributo | Valor |
 |----------|-------|
 | Backend | Ragie SaaS |
-| `partition` | `"test"` |
+| `partition` | `"zeus-library"` |
 | `type_access` | `READ` (somente busca) |
 
 Documentos corporativos sincronizados do OneDrive via Ragie. Sem dependência de Weaviate local.
+
+O metadata retornado inclui `document_name`, `source_url`, `file_path`, `folder`, `start_page`/`end_page` (PDFs) e `start_time`/`end_time` (vídeo/áudio). Veja detalhes em [rag/README.md](../rag/README.md#metadata-retornado-por-search).
 
 ---
 

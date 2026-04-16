@@ -184,8 +184,21 @@ Reutiliza as `@tool` functions do `DiagnosticFullModel` — mesma API, LLM mais 
 
 | Atributo | Valor |
 |----------|-------|
-| LLM | `gpt-5-mini`, temperature=0.1 |
+| LLM | `gpt-5-nano`, temperature=0.1 |
 | `tools` | `[OneDrive().as_tool()]` |
+
+Agente de consulta documental especializado nos arquivos do OneDrive. Segue um protocolo rígido de resposta:
+
+1. **Sempre consulta o OneDrive** antes de formular qualquer resposta.
+2. **Se não encontrar** informação relevante, responde somente: _"O assunto não consta na base de documentos."_
+3. **Se encontrar**, gera uma resposta em markdown com:
+   - Citações inline pelo número da fonte: `[1]`, `[2]`
+   - Seção `## Fontes` ao final com tabela `# | Documento | Localização | Link`
+4. **Localização** na tabela varia por tipo de arquivo:
+   - `.pdf` / `.pptx` → `p. X` ou `p. X-Y` (via `start_page`/`end_page`)
+   - vídeo/áudio → `Xmin Ys` (via `start_time`/`end_time`)
+   - outros (`.md`, `.xlsx`, etc.) → `—`
+5. **Nunca** repete o mesmo documento na tabela — agrupa por `document_name`.
 
 ---
 

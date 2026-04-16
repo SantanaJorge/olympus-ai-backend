@@ -148,6 +148,23 @@ Implementação de RAG usando [Ragie](https://ragie.ai) como backend gerenciado.
 | `max_query_results` | `int` | `5` | Máx. resultados por busca |
 | `rerank` | `bool` | `True` | Reranking nos resultados |
 
+### Metadata retornado por `search()`
+
+Cada `Document` retornado inclui os seguintes campos em `metadata`:
+
+| Campo | Tipo | Origem | Descrição |
+|-------|------|--------|-----------|
+| `document_id` | `str` | chunk | ID único do documento no Ragie |
+| `document_name` | `str` | chunk | Nome do arquivo (ex: `"Manual.pdf"`) |
+| `score` | `float` | chunk | Score de relevância (relativo à query) |
+| `start_page` | `int \| None` | chunk.metadata | Página inicial — disponível para `.pdf` e `.pptx` |
+| `end_page` | `int \| None` | chunk.metadata | Página final — disponível para `.pdf` e `.pptx` |
+| `start_time` | `float \| None` | chunk.metadata | Tempo inicial em segundos — disponível para vídeo/áudio |
+| `end_time` | `float \| None` | chunk.metadata | Tempo final em segundos — disponível para vídeo/áudio |
+| _(outros)_ | — | chunk.document_metadata | Metadados extras definidos no documento (ex: `folder`, `source_url`, `file_path`) |
+
+> **Nota:** `start_page`/`end_page` e `start_time`/`end_time` são `None` para arquivos que não suportam esses campos (ex: `.md`, `.docx`, `.xlsx`).
+
 ### Diferenças em relação ao WeaviateRAG
 
 | Aspecto | WeaviateRAG | RagieRAG |
