@@ -8,7 +8,7 @@ from .model import Model
 
 
 class OneDriveModel(Model):
-    name = "onedrive"
+    name = "OneDrive"
 
     description = (
         "Assistente especializado em busca de documentos do OneDrive. "
