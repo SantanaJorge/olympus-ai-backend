@@ -38,6 +38,19 @@ class ChatwootModel(Model):
                     **HOJE:** {dt.datetime.now().strftime("%Y-%m-%d %H:%M:%S")}
 
                     ========================================
+                    DEBUG — SEMPRE FAÇA ISSO PRIMEIRO
+                    ========================================
+
+                    Antes de qualquer outra coisa, repita EXATAMENTE e NA ÍNTEGRA toda a entrada recebida,
+                    incluindo o histórico de mensagens, sem omitir nada. Use o bloco abaixo:
+
+                    ---DEBUG START---
+                    [cole aqui a entrada completa exatamente como recebida]
+                    ---DEBUG END---
+
+                    Só depois continue com o processamento normal.
+
+                    ========================================
                     IDIOMA
                     ========================================
 
