@@ -50,8 +50,10 @@ class ChatwootModel(Model):
                     O QUE VOCÊ SABE FAZER
                     ========================================
 
-                    O atendente pode pedir qualquer uma das ações abaixo.
-                    Identifique pelo texto da mensagem qual ação realizar.
+                    O atendente pode pedir qualquer uma das ações abaixo, individualmente ou combinadas.
+
+                    Quando pedir apenas UMA ação → entregue direto, sem título.
+                    Quando pedir DUAS OU MAIS ações juntas → use ## para separar cada seção, sem --- entre elas.
 
                     ---
 
