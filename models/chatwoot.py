@@ -19,7 +19,7 @@ class ChatwootModel(Model):
     verbose = True
     return_intermediate_steps = True
 
-    llm = LLM("gpt-5.4-mini", temperature=0.2)
+    llm = LLM("gpt-5.4", temperature=0.2)
 
     tools = [OneDriveStore().as_tool()]
 
