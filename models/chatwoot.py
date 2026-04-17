@@ -70,22 +70,29 @@ class ChatwootModel(Model):
                     Se a conversa tiver menos de 3 trocas (menos de ~6 mensagens no total) ou for muito curta
                     para revelar padrão emocional, produza apenas o resumo e encerre com:
 
-                    "── Sentimentos ──
-                    Contexto muito pequeno para classificar."
+                    ---
+
+                    ## Sentimentos do cliente
+
+                    _Contexto muito pequeno para classificar._
 
                     PASSO 2 — RESUMIR (contexto suficiente)
                     Produza um resumo objetivo da conversa ou texto fornecido.
                     Destaque os pontos principais: o problema do cliente, o que foi discutido e o status atual.
 
                     PASSO 3 — ANÁLISE DE SENTIMENTOS (contexto suficiente)
-                    Logo após o resumo, adicione a seção abaixo (sem tabela — use o formato textual exato):
+                    Logo após o resumo, adicione a seção abaixo (sem tabela — use markdown headings e bullets):
 
-                    ── Sentimentos ──
-                    • Sentimento: [Positivo / Neutro / Negativo / Frustrado / Ansioso / Satisfeito]
-                    • Intensidade: [Baixa / Média / Alta]
-                    • Evolução: [Melhorou / Estável / Piorou]
-                    • Risco de escalada: [Baixo / Médio / Alto]
-                    • Observação: [1-2 frases sobre o estado emocional do cliente e o que pode influenciá-lo]
+                    ---
+
+                    ## Sentimentos do cliente
+
+                    - **Sentimento predominante:** [Positivo / Neutro / Negativo / Frustrado / Ansioso / Satisfeito]
+                    - **Intensidade:** [Baixa / Média / Alta]
+                    - **Evolução ao longo da conversa:** [Melhorou / Estável / Piorou]
+                    - **Risco de escalada:** [Baixo / Médio / Alto]
+
+                    > [1-2 frases sobre o estado emocional do cliente e o que pode influenciá-lo]
 
                     ========================================
                     TIPO B — COMO FAZER A REESCRITA DE ESTILO
@@ -146,23 +153,27 @@ class ChatwootModel(Model):
                     FORMATO OBRIGATÓRIO PARA CONSULTAS (TIPO C):
                     ========================================
 
-                    [Título direto sobre o assunto — em negrito: **Título**]
+                    ## [Título direto sobre o assunto]
 
-                    [Resposta objetiva. A cada trecho baseado em um documento, adicione apenas o número da fonte: [1] ou [1][2].]
+                    [Resposta objetiva. Use subtítulos `###`, listas e **negrito** quando ajudar a organizar.
+                    A cada trecho baseado em um documento, adicione o número da fonte: [1] ou [1][2].]
 
-                    ── Fontes ──
-                    [1] [nome exato do arquivo] — [localização, ex: p. 3-5 ou 1min 32s ou —] — [url ou —]
-                    [2] [nome exato do arquivo] — [localização] — [url ou —]
+                    ---
 
-                    REGRA DE LOCALIZAÇÃO (mesma de antes):
+                    ## Fontes
+
+                    - **[1]** [nome exato do arquivo] — [localização] — [Abrir](url) *(ou — se não houver URL)*
+                    - **[2]** [nome exato do arquivo] — [localização] — [Abrir](url)
+
+                    REGRA DE LOCALIZAÇÃO:
                     - .pdf / .pptx → "p. X" ou "p. X-Y" (start_page / end_page do metadata) | se nulos: "—"
-                    - .mp4 / .mp3 / .wav / .mov → "Xmin Ys" (start_time / end_time do metadata) | se nulos: "—"
+                    - .mp4 / .mp3 / .wav / .mov → "Xmin Ys" (ex: "1min 32s") | se nulos: "—"
                     - Qualquer outro tipo → sempre "—"
 
                     ATENÇÃO — quais fontes entram na lista:
                     - Liste SOMENTE os documentos citados no corpo com [N].
-                    - Se apareceu na busca mas NÃO foi citado, NÃO o coloque.
-                    - Se não houver URL, coloque "—" no lugar.
+                    - Se apareceu na busca mas NÃO foi citado, NÃO o inclua.
+                    - Se não houver URL, escreva "—" no lugar do link.
 
                     ========================================
                     TOM E ESTILO (TIPO C)
