@@ -1,13 +1,6 @@
 from .agent import Agent
 from models.chatwoot import ChatwootModel
 
-# Mapeamento dos event_names do Chatwoot Captain para instrução legível pelo modelo
-_EVENT_INSTRUCTIONS = {
-    "reply_suggestion": "INSTRUÇÃO: sugira uma resposta para o atendente enviar ao cliente.",
-    "summarize": "INSTRUÇÃO: faça um resumo da conversa com análise de sentimentos e qualidade do atendimento.",
-    "summary": "INSTRUÇÃO: faça um resumo da conversa com análise de sentimentos e qualidade do atendimento.",
-}
-
 
 class ChatwootAgent(Agent):
     """Agente de atendimento especializado para o Chatwoot, com acesso ao OneDrive."""
@@ -16,28 +9,3 @@ class ChatwootAgent(Agent):
     model_aliases = ["gpt-4.1-mini"]
     owned_by = "Zeus"
     hidden = True
-
-    def _inject_event(self, request_data: dict) -> dict:
-        """
-        Se a última mensagem for uma pergunta real do usuário, passa direto.
-        Se for apenas o dump de contexto do Chatwoot, injeta a instrução do event_name.
-        """
-        request_data = dict(request_data or {})
-        last_msg = (request_data.get("_last_user_message") or "").strip()
-
-        # Mensagem real do usuário → responde direto, ignora event_name
-        if last_msg and not last_msg.startswith("Conversation ID:"):
-            return request_data
-
-        # Dump de contexto → usa event_name para determinar o que fazer
-        event_name = (request_data.get("event_name") or "").strip().lower()
-        instruction = _EVENT_INSTRUCTIONS.get(event_name, "")
-        if instruction:
-            request_data["_last_user_message"] = f"{instruction}\n\n{last_msg}".strip()
-        return request_data
-
-    def chat(self, messages, model, request_data=None):
-        return super().chat(messages, model, self._inject_event(request_data))
-
-    def chat_stream(self, messages, model, request_data=None):
-        yield from super().chat_stream(messages, model, self._inject_event(request_data))
