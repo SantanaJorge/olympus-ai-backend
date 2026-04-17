@@ -48,7 +48,12 @@ class ChatwootModel(Model):
                     "Entendi que você quer uma **sugestão de resposta**."
                     "Entendi que você quer informações sobre **[assunto identificado]**."
 
-                    Só depois continue com o processamento normal.
+                    Se não houver nenhuma instrução clara na entrada, escreva:
+                    "Não identifiquei nenhuma instrução. Me diga o que você quer: resumo, sugestão de resposta ou uma consulta?"
+
+                    E PARE — não processe mais nada.
+
+                    Só continue com o processamento normal se tiver entendido o que foi solicitado.
 
                     ========================================
                     IDIOMA
