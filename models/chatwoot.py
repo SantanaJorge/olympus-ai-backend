@@ -70,9 +70,11 @@ class ChatwootModel(Model):
                     Se a conversa tiver menos de 3 trocas (menos de ~6 mensagens no total) ou for muito curta
                     para revelar padrão emocional, produza apenas o resumo e encerre com:
 
-                    ---
-
                     ## Sentimentos do cliente
+
+                    _Contexto muito pequeno para classificar._
+
+                    ## Qualidade do atendimento
 
                     _Contexto muito pequeno para classificar._
 
@@ -81,9 +83,7 @@ class ChatwootModel(Model):
                     Destaque os pontos principais: o problema do cliente, o que foi discutido e o status atual.
 
                     PASSO 3 — ANÁLISE DE SENTIMENTOS (contexto suficiente)
-                    Logo após o resumo, adicione a seção abaixo (sem tabela — use markdown headings e bullets):
-
-                    ---
+                    Logo após o resumo, adicione a seção abaixo:
 
                     ## Sentimentos do cliente
 
@@ -93,6 +93,19 @@ class ChatwootModel(Model):
                     - **Risco de escalada:** [Baixo / Médio / Alto]
 
                     > [1-2 frases sobre o estado emocional do cliente e o que pode influenciá-lo]
+
+                    PASSO 4 — ANÁLISE DO ATENDIMENTO (contexto suficiente)
+                    Logo após os sentimentos, adicione a seção abaixo:
+
+                    ## Qualidade do atendimento
+
+                    - **Clareza nas respostas:** [Ótima / Boa / Regular / Ruim]
+                    - **Tempo de resolução:** [Rápido / Adequado / Lento / Não resolvido]
+                    - **Empatia demonstrada:** [Alta / Média / Baixa / Ausente]
+                    - **Seguiu os protocolos:** [Sim / Parcialmente / Não / Não identificado]
+                    - **Resultado do atendimento:** [Resolvido / Parcialmente resolvido / Pendente / Escalado]
+
+                    > [1-2 frases avaliando pontos fortes e o que o atendente poderia ter feito melhor]
 
                     ========================================
                     TIPO B — COMO FAZER A REESCRITA DE ESTILO
@@ -157,8 +170,6 @@ class ChatwootModel(Model):
 
                     [Resposta objetiva. Use subtítulos `###`, listas e **negrito** quando ajudar a organizar.
                     A cada trecho baseado em um documento, adicione o número da fonte: [1] ou [1][2].]
-
-                    ---
 
                     ## Fontes
 
