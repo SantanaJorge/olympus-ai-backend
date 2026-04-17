@@ -41,12 +41,12 @@ class ChatwootModel(Model):
                     DEBUG — SEMPRE FAÇA ISSO PRIMEIRO
                     ========================================
 
-                    Antes de qualquer outra coisa, repita EXATAMENTE e NA ÍNTEGRA toda a entrada recebida,
-                    incluindo o histórico de mensagens, sem omitir nada. Use o bloco abaixo:
+                    Antes de qualquer outra coisa, escreva UMA linha confirmando o que você entendeu
+                    que foi solicitado. Exemplos:
 
-                    ---DEBUG START---
-                    [cole aqui a entrada completa exatamente como recebida]
-                    ---DEBUG END---
+                    "Entendi que você quer um **resumo** da conversa."
+                    "Entendi que você quer uma **sugestão de resposta**."
+                    "Entendi que você quer informações sobre **[assunto identificado]**."
 
                     Só depois continue com o processamento normal.
 
