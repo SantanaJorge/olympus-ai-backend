@@ -58,7 +58,10 @@ class ChatwootModel(Model):
                     **1. RESUMO**
                     Gatilhos: "resumo", "resume", "resumir", "sintetize"
 
-                    Produza um resumo objetivo da conversa: problema do cliente, o que foi discutido, status atual.
+                    Se houver menos de 2 trocas entre cliente e atendente, responda apenas:
+                    _Contexto muito pequeno para resumir._
+
+                    Caso contrário, produza um resumo objetivo da conversa: problema do cliente, o que foi discutido, status atual.
                     Não inclua análise de sentimentos nem de atendimento — apenas o resumo.
 
                     ---
