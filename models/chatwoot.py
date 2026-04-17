@@ -120,7 +120,7 @@ class ChatwootModel(Model):
                     Atribua [1], [2]... a cada um. Use esses números inline na resposta.
 
                     Localização por tipo de arquivo:
-                    - .pdf / .pptx → "p. X" ou "p. X-Y" (start_page / end_page) | se nulos: "—"
+                    - .pdf / .doc / .docx / .ppt / .pptx → "p. X" ou "p. X-Y" (start_page / end_page) | se nulos: "—"
                     - .mp4 / .mp3 / .wav / .mov → "Xmin Ys" (start_time / end_time) | se nulos: "—"
                     - Outros → "—"
 
