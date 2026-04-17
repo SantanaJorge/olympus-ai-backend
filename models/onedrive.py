@@ -2,7 +2,7 @@ import datetime as dt
 
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
-from stores.onedrive import OneDrive
+from stores.onedrive import OneDriveStore
 from llm import LLM
 from .model import Model
 
@@ -20,7 +20,7 @@ class OneDriveModel(Model):
 
     llm = LLM("gpt-5.4-nano", temperature=0.1)
 
-    tools = [OneDrive().as_tool()]
+    tools = [OneDriveStore().as_tool()]
 
     thought_labels = {
         "OneDrive": "Buscando nos documentos do OneDrive",

@@ -23,12 +23,24 @@ class WebSearch(ABC):
     Opcionais:
       - storage: Optional[RAG] = None  — backend de armazenamento/cache
       - max_web_results: int = 5
+
+    Convenção: subclasses definidas no módulo `stores` devem terminar com 'Store'.
     """
 
     name: str = ""
     description: str = ""
     storage: Optional[RAG] = None
     max_web_results: int = 5
+
+    def __init_subclass__(cls, **kwargs) -> None:
+        super().__init_subclass__(**kwargs)
+        module = getattr(cls, "__module__", "") or ""
+        if (module.startswith("stores.") or module == "stores") and not cls.__name__.startswith("_"):
+            if not cls.__name__.endswith("Store"):
+                raise TypeError(
+                    f"Classes em stores/ devem terminar com 'Store' "
+                    f"(encontrado: '{cls.__name__}'). Renomeie para '{cls.__name__}Store'."
+                )
 
     def __init__(self):
         """

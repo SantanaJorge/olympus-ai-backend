@@ -25,10 +25,22 @@ class RAG(ABC):
     E implementar os métodos abstratos:
       - search(query, *, k=None) -> List[Document]
       - write(texts, metadatas=None, source_ids=None) -> List[str]
+
+    Convenção: subclasses definidas no módulo `stores` devem terminar com 'Store'.
     """
 
     name: str = ""
     description: str = ""
+
+    def __init_subclass__(cls, **kwargs: Any) -> None:
+        super().__init_subclass__(**kwargs)
+        module = getattr(cls, "__module__", "") or ""
+        if (module.startswith("stores.") or module == "stores") and not cls.__name__.startswith("_"):
+            if not cls.__name__.endswith("Store"):
+                raise TypeError(
+                    f"Classes em stores/ devem terminar com 'Store' "
+                    f"(encontrado: '{cls.__name__}'). Renomeie para '{cls.__name__}Store'."
+                )
 
     @abstractmethod
     def search(

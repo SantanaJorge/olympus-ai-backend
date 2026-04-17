@@ -3,12 +3,13 @@ import os
 from search.tavily import TavilySearch
 
 
-class WebSearch(TavilySearch):
+class WebSearchStore(TavilySearch):
     """
     Busca web direta via Tavily, sem cache persistente.
     Use para obter informações atualizadas da internet.
     """
 
+    name = "WebSearch"
     description = """
         Ferramenta de busca na web (via Tavily).
         Use para encontrar informações atualizadas, notícias recentes,

@@ -1,13 +1,13 @@
-from .library import Library
-from .memory import Memory
-from .onedrive import OneDrive
-from .research import Research
-from .web_search import WebSearch
+from .library import LibraryStore
+from .memory import MemoryStore
+from .onedrive import OneDriveStore
+from .research import ResearchStore
+from .web_search import WebSearchStore
 
 __all__ = [
-    "Library",
-    "Memory",
-    "OneDrive",
-    "Research",
-    "WebSearch",
+    "LibraryStore",
+    "MemoryStore",
+    "OneDriveStore",
+    "ResearchStore",
+    "WebSearchStore",
 ]

@@ -2,7 +2,7 @@ import datetime as dt
 
 from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
 
-from stores.web_search import WebSearch
+from stores.web_search import WebSearchStore
 from llm import LLM
 from .model import Model
 
@@ -20,7 +20,7 @@ class WebSearchModel(Model):
 
     llm = LLM("gpt-5.4-nano", temperature=0.1)
 
-    tools = [*WebSearch().as_tool()]
+    tools = [*WebSearchStore().as_tool()]
 
     thought_labels = {
         "WebSearch_WebSearch": "Buscando na web",

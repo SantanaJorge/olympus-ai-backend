@@ -3,7 +3,8 @@ from rag.base import TypeAccess
 from rag.weaviate import WeaviateRAG
 
 
-class Memory(WeaviateRAG):
+class MemoryStore(WeaviateRAG):
+    name = "Memory"
     description = """
         Memória de longo prazo das conversas dos usuários do ZeusAI.
         Uma linha = um trecho/mensagem que você decidiu salvar como importante.

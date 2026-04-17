@@ -3,7 +3,8 @@ from rag.base import TypeAccess
 from rag.weaviate import WeaviateRAG
 
 
-class Library(WeaviateRAG):
+class LibraryStore(WeaviateRAG):
+    name = "Library"
     description = """
         Biblioteca de conhecimento.
         Use esta ferramenta para buscar informações técnicas, manuais, documentações e procedimentos.

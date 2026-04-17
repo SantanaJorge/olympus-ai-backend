@@ -6,7 +6,7 @@ from rag.weaviate import WeaviateRAG
 from search.tavily import TavilySearch
 
 
-class _ResearchStore(WeaviateRAG):
+class _ResearchCacheStore(WeaviateRAG):
     """Cache Weaviate para resultados de pesquisa web."""
 
     description = "Cache interno de pesquisas web do ZeusAI."
@@ -20,7 +20,7 @@ class _ResearchStore(WeaviateRAG):
     port = 8080
 
 
-class Research(TavilySearch):
+class ResearchStore(TavilySearch):
     """
     Pesquisa web com cache semântico.
 
@@ -29,6 +29,7 @@ class Research(TavilySearch):
         storage = MyRagieRAG  # ex: usa Ragie como cache
     """
 
+    name = "Research"
     description = """
         Agente de Pesquisa (Research).
         Realiza buscas na web (via Tavily) para encontrar informações atualizadas
@@ -37,4 +38,4 @@ class Research(TavilySearch):
 
     tavily_api_key = os.getenv("TAVILY_API_KEY")
     max_web_results = 5
-    storage = _ResearchStore
+    storage = _ResearchCacheStore
