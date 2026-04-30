@@ -56,6 +56,10 @@ class Server:
 
         @self.app.before_request
         def check_auth():
+            # Auth desabilitada se AUTH_API_KEY não estiver configurada
+            if not os.getenv("AUTH_API_KEY"):
+                return
+
             # Preflight CORS — OPTIONS nunca exige autenticação
             if request.method == "OPTIONS":
                 return
